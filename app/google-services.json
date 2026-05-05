@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "537384529048",
+    "project_id": "footballapp-9720e",
+    "storage_bucket": "footballapp-9720e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537384529048:android:7145cf955102a5776e34ed",
+        "android_client_info": {
+          "package_name": "com.example.footballapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW8xPG_qSGQxENv8MMZ7YMsXRi5S-0pzk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

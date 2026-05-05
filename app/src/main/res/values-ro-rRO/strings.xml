@@ -1,0 +1,25 @@
+<resources>
+    <string name="home_main_title">Experimenteaza\nfotbalul\nca niciodata</string>
+    <string name="home_explore">Explorează Ligi</string>
+    <string name="tab_home">Acasă</string>
+    <string name="tab_leagues">Ligi</string>
+    <string name="tab_favorites">Favorite</string>
+    <string name="tab_settings">Setări</string>
+    <string name="home_subtitle">FOOTBALL APP</string>
+    <string name="home_desc">Urmareste echipele si ligile tale preferate\nin timp real cu actualizari live</string>
+    <string name="home_btn">Exploreaza ligile</string>
+    <string name="home_footer">Prezentand ligi importante din toata lumea</string>
+    <string name="leagues_title">Țări</string>
+    <string name="leagues_subtitle">Selectează o țară pentru a vedea competițiile</string>
+    <string name="leagues_search_hint">Caută țară...</string>
+    <string name="standings_subtitle">%d echipe înscrise</string>
+    <string name="standings_loading">Se încarcă clasamentul...</string>
+    <string name="standings_empty">Nu există date disponibile.</string>
+    <string name="standings_stat_w">V</string>
+    <string name="standings_stat_d">E</string>
+    <string name="standings_stat_l">Î</string>
+    <string name="standings_stat_pts">Pct</string>
+    <string name="standings_legend_cl">Champions League</string>
+    <string name="standings_legend_el">Europa League</string>
+    <string name="standings_legend_rel">Retrogradare</string>
+</resources>

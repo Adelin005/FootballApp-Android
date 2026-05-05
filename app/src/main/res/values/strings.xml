@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name">FootballApp</string>
+    
+    <!-- Navigation -->
+    <string name="tab_home">Acasă</string>
+    <string name="tab_leagues">Ligi</string>
+    <string name="tab_favorites">Favorite</string>
+    <string name="tab_settings">Setări</string>
+
+    <!-- Home -->
+    <string name="home_subtitle">Football Live</string>
+    <string name="home_main_title">Experimenteaza\nfotbalul\nca niciodata</string>
+    <string name="home_desc">Urmareste echipele si ligile tale preferate\nin timp real cu actualizari live</string>
+    <string name="home_btn">Exploreaza ligile</string>
+    <string name="home_footer">Prezentand ligi importante din toata lumea</string>
+
+    <!-- Leagues -->
+    <string name="leagues_title">Alege o Țară</string>
+    <string name="leagues_subtitle">Selectează o țară pentru a explora ligile de fotbal</string>
+    <string name="leagues_search_hint">Caută țări...</string>
+    <string name="country_leagues_count">%1$d ligi · %2$d echipe</string>
+
+    <!-- Country Leagues -->
+    <string name="country_leagues_subtitle">Ligi disponibile</string>
+    <string name="country_leagues_loading">Se încarcă ligile din %1$s…</string>
+    <string name="country_leagues_error">Eroare necunoscută</string>
+    <string name="country_leagues_reload">Reîncarcă</string>
+    <string name="country_leagues_empty">Nu sunt ligi disponibile pentru %1$s.</string>
+
+    <!-- Standings -->
+    <string name="standings_subtitle">%1$d echipe · Clasament</string>
+    <string name="standings_loading">Se încarcă clasamentul…</string>
+    <string name="standings_empty">Nu există date de clasament.</string>
+    <string name="standings_stat_w">V</string>
+    <string name="standings_stat_d">E</string>
+    <string name="standings_stat_l">Î</string>
+    <string name="standings_stat_pts">Pct</string>
+    <string name="standings_legend_cl">Champions League</string>
+    <string name="standings_legend_el">Europa League</string>
+    <string name="standings_legend_rel">Retrogradare</string>
+
+    <!-- Favorites -->
+    <string name="fav_title">Favorite</string>
+    <string name="fav_desc">Echipele tale preferate · Disponibil offline</string>
+    <string name="fav_offline_banner">Date stocate local pentru acces offline</string>
+    <string name="fav_empty_title">Nicio favorită încă</string>
+    <string name="fav_empty_desc">Mergi într-o ligă și apasă pe \u2B50 steluță pe\norice echipă pentru a o salva aici</string>
+    <string name="fav_breadcrumb">Ligi \u2192 Țară \u2192 Ligă \u2192</string>
+    <string name="fav_breadcrumb_team"> Echipă</string>
+
+    <!-- Auth -->
+    <string name="auth_title_login">Football App</string>
+    <string name="auth_subtitle_login">Compania ta de fotbal</string>
+    <string name="auth_email_label">Adresă Email</string>
+    <string name="auth_email_hint">nume@exemplu.com</string>
+    <string name="auth_password_label">Parolă</string>
+    <string name="auth_password_hint">•\u2022\u2022\u2022\u2022\u2022\u2022\u2022</string>
+    <string name="auth_forgot_pass">Ai uitat parola?</string>
+    <string name="auth_login_btn">Conectare</string>
+    <string name="auth_signup_link">Creează Cont</string>
+    <string name="auth_terms">Prin conectare, ești de acord cu Termenii și Condițiile și Politica de Confidențialitate.</string>
+    <string name="auth_terms_1">Prin conectare, ești de acord cu </string>
+    <string name="auth_terms_2">Termenii și Condițiile</string>
+    <string name="auth_terms_3"> și </string>
+    <string name="auth_terms_4">Politica de Confidențialitate</string>
+    <string name="auth_terms_5">.</string>
+    <string name="auth_title_signup">Alătură-te</string>
+    <string name="auth_subtitle_signup">Creează contul tău nou</string>
+    <string name="auth_confirm_pass_label">Confirmă Parola</string>
+    <string name="auth_signup_btn">Creează Cont</string>
+    <string name="auth_login_link">Înapoi la Conectare</string>
+    <string name="auth_err_empty">Completează toate câmpurile</string>
+    <string name="auth_err_pass_mismatch">Parolele nu se potrivesc</string>
+    <string name="auth_err_general">Eroare: %1$s</string>
+
+    <!-- Profile & Settings -->
+    <string name="settings_title">Setări</string>
+    <string name="settings_greeting">Salut %1$s</string>
+    <string name="settings_profile_info">Informații Profil</string>
+    <string name="settings_account">CONT</string>
+    <string name="settings_preferences">PREFERINȚE</string>
+    <string name="settings_dark_mode">Mod Întunecat</string>
+    <string name="settings_language">Limbă</string>
+    <string name="settings_logout">Deconectare</string>
+    <string name="profile_title">Informații Profil</string>
+    <string name="profile_personal_details">Detalii Personale</string>
+    <string name="profile_email_readonly">Adresă Email (Nu poate fi schimbată)</string>
+    <string name="profile_display_name">Nume Afișat</string>
+    <string name="profile_save_btn">Salvează Profil</string>
+    <string name="profile_security">Securitate</string>
+    <string name="profile_new_pass">Parolă Nouă</string>
+    <string name="profile_new_pass_hint">Introdu parola nouă</string>
+    <string name="profile_confirm_new_pass">Confirmă Parola Nouă</string>
+    <string name="profile_confirm_new_pass_hint">Confirmă parola nouă</string>
+    <string name="profile_change_pass_btn">Schimbă Parola</string>
+    <string name="profile_logout_hint">Trebuie să te reconectezi pentru această acțiune</string>
+    <string name="profile_msg_updated">Profil actualizat</string>
+    <string name="profile_msg_pass_changed">Parola a fost actualizată! Reconectează-te.</string>
+
+</resources>

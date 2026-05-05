@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FootballApp</string>
+    
+    <!-- Navigation -->
+    <string name="tab_home">Home</string>
+    <string name="tab_leagues">Explore</string>
+    <string name="tab_favorites">Favorites</string>
+    <string name="tab_settings">Settings</string>
+
+    <!-- Home -->
+    <string name="home_subtitle">Football Live</string>
+    <string name="home_main_title">Experience\nFootball\nLike Never Before</string>
+    <string name="home_desc">Follow your favorite teams and leagues\nin real time with live updates.</string>
+    <string name="home_btn">Explore Leagues</string>
+    <string name="home_footer">FEATURING MAJOR LEAGUES AROUND THE WORLD</string>
+
+    <!-- Leagues -->
+    <string name="leagues_title">Choose a Country</string>
+    <string name="leagues_subtitle">Select a country to explore football leagues</string>
+    <string name="leagues_search_hint">Search countries...</string>
+    <string name="country_leagues_count">%1$d leagues · %2$d teams</string>
+
+    <!-- Country Leagues -->
+    <string name="country_leagues_subtitle">Available leagues</string>
+    <string name="country_leagues_loading">Loading leagues from %1$s…</string>
+    <string name="country_leagues_error">Unknown error</string>
+    <string name="country_leagues_reload">Reload</string>
+    <string name="country_leagues_empty">No leagues available for %1$s.</string>
+
+    <!-- Standings -->
+    <string name="standings_subtitle">%1$d teams · Standings</string>
+    <string name="standings_loading">Loading standings…</string>
+    <string name="standings_empty">No standings data available.</string>
+    <string name="standings_stat_w">W</string>
+    <string name="standings_stat_d">D</string>
+    <string name="standings_stat_l">L</string>
+    <string name="standings_stat_pts">Pts</string>
+    <string name="standings_legend_cl">Champions League</string>
+    <string name="standings_legend_el">Europa League</string>
+    <string name="standings_legend_rel">Relegation</string>
+
+    <!-- Favorites -->
+    <string name="fav_title">Favorites</string>
+    <string name="fav_desc">Your favorite teams · Available offline</string>
+    <string name="fav_offline_banner">Data stored locally for offline access</string>
+    <string name="fav_empty_title">No favorites yet</string>
+    <string name="fav_empty_desc">Go to a league and tap the \u2B50 star on\nany team to save it here</string>
+    <string name="fav_breadcrumb">Leagues \u2192 Country \u2192 League \u2192</string>
+    <string name="fav_breadcrumb_team"> Team</string>
+
+    <!-- Auth -->
+    <string name="auth_title_login">Football App</string>
+    <string name="auth_subtitle_login">Your football companion</string>
+    <string name="auth_email_label">Email Address</string>
+    <string name="auth_email_hint">name@example.com</string>
+    <string name="auth_password_label">Password</string>
+    <string name="auth_password_hint">•\u2022\u2022\u2022\u2022\u2022\u2022\u2022</string>
+    <string name="auth_forgot_pass">Forgot password?</string>
+    <string name="auth_login_btn">Log In</string>
+    <string name="auth_signup_link">Create Account</string>
+    <string name="auth_terms">By logging in, you agree to the Terms &amp; Conditions and Privacy Policy.</string>
+    <string name="auth_terms_1">By logging in, you agree to the </string>
+    <string name="auth_terms_2">Terms &amp; Conditions</string>
+    <string name="auth_terms_3"> and </string>
+    <string name="auth_terms_4">Privacy Policy</string>
+    <string name="auth_terms_5">.</string>
+    <string name="auth_title_signup">Join Us</string>
+    <string name="auth_subtitle_signup">Create your new account</string>
+    <string name="auth_confirm_pass_label">Confirm Password</string>
+    <string name="auth_signup_btn">Create Account</string>
+    <string name="auth_login_link">Back to Log In</string>
+    <string name="auth_err_empty">Please fill in all fields</string>
+    <string name="auth_err_pass_mismatch">Passwords do not match</string>
+    <string name="auth_err_general">Error: %1$s</string>
+
+    <!-- Profile & Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_greeting">Hello %1$s</string>
+    <string name="settings_profile_info">Profile Info</string>
+    <string name="settings_preferences">ACCOUNT PREFERENCES</string>
+    <string name="settings_dark_mode">Dark Mode</string>
+    <string name="settings_language">System OS Language</string>
+    <string name="settings_logout">Log Out</string>
+    <string name="profile_title">Profile Info</string>
+    <string name="profile_personal_details">Personal Details</string>
+    <string name="profile_email_readonly">Email Address (Cannot be changed)</string>
+    <string name="profile_display_name">Display Name</string>
+    <string name="profile_save_btn">Save Profile</string>
+    <string name="profile_security">Security</string>
+    <string name="profile_new_pass">New Password</string>
+    <string name="profile_new_pass_hint">Enter new password</string>
+    <string name="profile_confirm_new_pass">Confirm New Password</string>
+    <string name="profile_confirm_new_pass_hint">Confirm new password</string>
+    <string name="profile_change_pass_btn">Change Password</string>
+    <string name="profile_logout_hint">You need to re-login for this action</string>
+    <string name="profile_msg_updated">Profile updated</string>
+    <string name="profile_msg_pass_changed">Password updated! Please log in again.</string>
+
+</resources>

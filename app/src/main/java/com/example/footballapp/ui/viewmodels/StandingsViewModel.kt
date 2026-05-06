@@ -10,7 +10,6 @@ import com.example.footballapp.FootballApp
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import java.util.Calendar
 
 class StandingsViewModel : ViewModel() {
 
@@ -26,10 +25,8 @@ class StandingsViewModel : ViewModel() {
     private val cacheManager = FootballApp.cacheManager
 
     private fun getCurrentSeason(): Int {
-        val calendar = Calendar.getInstance()
-        val month = calendar.get(Calendar.MONTH) + 1 // 1-12
-        val year = calendar.get(Calendar.YEAR)
-        return if (month >= 7) year else year - 2
+        // API free plan supports up to 2024 season; hardcode to avoid 2025/2026 errors
+        return 2024
     }
 
     fun loadStandings(leagueId: String) {
@@ -83,13 +80,13 @@ class StandingsViewModel : ViewModel() {
     private fun mapAndSetStandings(standingsResponseList: List<StandingsResponse>) {
         if (standingsResponseList.isEmpty()) return
         
-        val leagueStandings = standingsResponseList[0].league.standings
+        val leagueStandings = standingsResponseList.getOrNull(0)?.league?.standings
         if (leagueStandings.isNullOrEmpty()) {
             _error.value = "Clasamentul nu este disponibil."
             return
         }
 
-        val tableEntries = leagueStandings[0]
+        val tableEntries = leagueStandings.getOrNull(0) ?: emptyList()
         _standings.value = tableEntries.map { entry ->
             TeamStanding(
                 teamName = entry.team.name,

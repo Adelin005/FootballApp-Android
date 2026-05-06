@@ -1,8 +1,6 @@
 package com.example.footballapp.ui.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -32,7 +30,7 @@ import com.example.footballapp.FootballApp
 import com.example.footballapp.data.FavoriteTeam
 
 @Composable
-fun FavoritesScreen() {
+fun FavoritesScreen(onTeamClick: (String, String, String) -> Unit) {
     val favoritesManager = FootballApp.favoritesManager
     val settingsManager = FootballApp.settingsManager
     val favorites by favoritesManager.favorites.collectAsState()
@@ -163,9 +161,16 @@ fun FavoritesScreen() {
                     modifier = Modifier.weight(1f)
                 ) {
                     items(favorites) { favorite ->
-                        FavoriteTeamCard(favorite, isDarkMode, onRemove = {
-                            favoritesManager.toggleFavorite(favorite.leagueName, favorite.leagueName, favorite.teamStanding)
-                        })
+                        FavoriteTeamCard(
+                            favorite = favorite, 
+                            isDarkMode = isDarkMode, 
+                            onRemove = {
+                                favoritesManager.toggleFavorite(favorite.leagueId, favorite.leagueName, favorite.teamStanding)
+                            },
+                            onClick = {
+                                onTeamClick(favorite.leagueId, favorite.leagueName, favorite.teamName)
+                            }
+                        )
                     }
                 }
             }
@@ -174,7 +179,12 @@ fun FavoritesScreen() {
 }
 
 @Composable
-fun FavoriteTeamCard(favorite: FavoriteTeam, isDarkMode: Boolean = true, onRemove: () -> Unit) {
+fun FavoriteTeamCard(
+    favorite: FavoriteTeam, 
+    isDarkMode: Boolean = true, 
+    onRemove: () -> Unit,
+    onClick: () -> Unit
+) {
     val cardBg = if (isDarkMode) Color(0xFF1C2541) else Color.White
     val textColor = if (isDarkMode) Color.White else Color(0xFF1F2937)
     val subTextColor = if (isDarkMode) Color.LightGray else Color.Gray
@@ -185,6 +195,7 @@ fun FavoriteTeamCard(favorite: FavoriteTeam, isDarkMode: Boolean = true, onRemov
     val team = favorite.teamStanding
 
     Card(
+        onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(containerColor = cardBg),
         shape = RoundedCornerShape(16.dp)

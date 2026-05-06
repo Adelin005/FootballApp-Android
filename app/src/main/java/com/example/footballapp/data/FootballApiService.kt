@@ -15,6 +15,7 @@ interface FootballApiService {
     @GET("leagues")
     suspend fun getLeagues(
         @Query("code") countryCode: String? = null,
+        @Query("season") season: Int? = null,
         @Header("x-apisports-key") apiKey: String = "404ed9dd4684bff265bd21acef0ade61"
     ): Response<FootballApiResponse<List<LeagueResponse>>>
 

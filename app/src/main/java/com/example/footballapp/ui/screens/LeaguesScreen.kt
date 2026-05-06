@@ -6,7 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Public
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
@@ -23,21 +23,16 @@ import coil.compose.AsyncImage
 import androidx.compose.ui.res.stringResource
 import com.example.footballapp.R
 import com.example.footballapp.ui.viewmodels.LeaguesViewModel
-
-// IMPORTURI CRITICE PENTRU ECHILIBRUL COLECTĂRII DE DATE
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 
 @Composable
 fun LeaguesScreen(
     onCountryClick: (String, String) -> Unit,
     viewModel: LeaguesViewModel = viewModel()
 ) {
-    // Colectăm datele din ViewModel
     val countries by viewModel.countries.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
 
-    // State local pentru căutare
     var searchQuery by remember { mutableStateOf("") }
 
     val filteredCountries = countries.filter {
@@ -56,7 +51,6 @@ fun LeaguesScreen(
             
             Spacer(modifier = Modifier.height(24.dp))
             
-            // Header
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
                     imageVector = Icons.Default.Public,
@@ -81,7 +75,6 @@ fun LeaguesScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Bara de căutare
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
@@ -136,7 +129,6 @@ fun LeaguesScreen(
 fun CountryItem(name: String, code: String, isDarkMode: Boolean, onClick: () -> Unit) {
     val cardBg = if (isDarkMode) Color(0xFF1C2541) else Color.White
     val textColor = if (isDarkMode) Color.White else Color(0xFF1F2937)
-    val subTextColor = if (isDarkMode) Color.Gray else Color.DarkGray
 
     Card(
         onClick = onClick,
@@ -150,7 +142,6 @@ fun CountryItem(name: String, code: String, isDarkMode: Boolean, onClick: () -> 
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Flag Image folosind Coil
             if (code.isNotBlank() && code.lowercase() != "world") {
                 AsyncImage(
                     model = "https://flagcdn.com/w80/${code.lowercase()}.png",
@@ -180,7 +171,7 @@ fun CountryItem(name: String, code: String, isDarkMode: Boolean, onClick: () -> 
             }
 
             Icon(
-                imageVector = Icons.Default.KeyboardArrowRight,
+                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
                 contentDescription = null,
                 tint = Color.Gray
             )

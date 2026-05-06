@@ -2,7 +2,6 @@ package com.example.footballapp.ui.screens
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -15,7 +14,8 @@ import androidx.navigation.compose.*
 import androidx.navigation.navArgument
 import com.example.footballapp.ui.Screen
 import com.example.footballapp.ui.bottomNavItems
-import com.example.footballapp.ui.screens.StandingsScreen
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -36,7 +36,9 @@ fun MainScreen() {
     val auth = com.google.firebase.auth.FirebaseAuth.getInstance()
     val startDest = if (auth.currentUser != null) Screen.Home.route else Screen.Login.route
     
-    val hideBottomBar = currentRoute in listOf(Screen.Login.route, Screen.SignUp.route, Screen.Profile.route)
+    val hideBottomBar = currentRoute?.startsWith(Screen.Login.route) == true || 
+                       currentRoute?.startsWith(Screen.SignUp.route) == true || 
+                       currentRoute?.startsWith(Screen.Profile.route) == true
 
     Scaffold(
         bottomBar = {
@@ -50,7 +52,6 @@ fun MainScreen() {
                         selected = selected,
                         onClick = {
                             navController.navigate(screen.route) {
-                                // Această secțiune rezolvă problema revenirii la Home
                                 popUpTo(navController.graph.findStartDestination().id) {
                                     saveState = true
                                 }
@@ -68,14 +69,12 @@ fun MainScreen() {
             }
         }
     }) { innerPadding ->
-        // Surface asigură că fundalul rămâne consistent între tranziții
         Surface(color = bgColor) {
             NavHost(
                 navController = navController,
                 startDestination = startDest,
                 modifier = Modifier.padding(innerPadding)
             ) {
-                // Auth
                 composable(Screen.Login.route) {
                     LoginScreen(
                         onLoginSuccess = {
@@ -98,7 +97,6 @@ fun MainScreen() {
                     )
                 }
 
-                // Ecran 1: Home
                 composable(Screen.Home.route) {
                     HomeScreen(
                         onExploreClick = { 
@@ -111,25 +109,21 @@ fun MainScreen() {
                             }
                         },
                         onProfileClick = { 
-                            navController.navigate(Screen.Settings.route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
+                            navController.navigate(Screen.Profile.route) {
                                 launchSingleTop = true
-                                restoreState = true
                             }
                         }
                     )
                 }
 
-                // Ecran 2: Lista Țări
                 composable(Screen.Leagues.route) {
                     LeaguesScreen(onCountryClick = { code, name ->
-                        navController.navigate("country_leagues/$code/$name")
+                        val encodedCode = URLEncoder.encode(code, StandardCharsets.UTF_8.toString()).replace("+", "%20")
+                        val encodedName = URLEncoder.encode(name, StandardCharsets.UTF_8.toString()).replace("+", "%20")
+                        navController.navigate("country_leagues/$encodedCode/$encodedName")
                     })
                 }
 
-                // Ecran 3: Ligile dintr-o țară
                 composable(
                     "country_leagues/{countryCode}/{countryName}",
                     arguments = listOf(
@@ -142,32 +136,42 @@ fun MainScreen() {
                         countryName = backStackEntry.arguments?.getString("countryName") ?: "",
                         onBackClick = { navController.popBackStack() },
                         onLeagueClick = { id, name ->
-                            navController.navigate("teams/$id/$name")
+                            val encodedId = URLEncoder.encode(id, StandardCharsets.UTF_8.toString()).replace("+", "%20")
+                            val encodedName = URLEncoder.encode(name, StandardCharsets.UTF_8.toString()).replace("+", "%20")
+                            navController.navigate("teams/$encodedId/$encodedName")
                         }
                     )
                 }
 
-// Ecran 4: Clasament ligă (REPARAT - acum afișează standings cu puncte)
                 composable(
-                    "teams/{leagueId}/{leagueName}",
+                    "teams/{leagueId}/{leagueName}?highlightTeam={highlightTeam}",
                     arguments = listOf(
                         navArgument("leagueId") { type = NavType.StringType },
-                        navArgument("leagueName") { type = NavType.StringType }
+                        navArgument("leagueName") { type = NavType.StringType },
+                        navArgument("highlightTeam") { 
+                            type = NavType.StringType
+                            nullable = true
+                            defaultValue = null
+                        }
                     )
                 ) { backStackEntry ->
                     StandingsScreen(
                         leagueId = backStackEntry.arguments?.getString("leagueId") ?: "",
                         leagueName = backStackEntry.arguments?.getString("leagueName") ?: "",
+                        highlightTeamName = backStackEntry.arguments?.getString("highlightTeam"),
                         onBackClick = { navController.popBackStack() }
                     )
                 }
 
-                // Ecran 5: Favorite
                 composable(Screen.Favorites.route) {
-                    FavoritesScreen()
+                    FavoritesScreen(onTeamClick = { leagueId, leagueName, teamName ->
+                        val encodedId = URLEncoder.encode(leagueId, StandardCharsets.UTF_8.toString()).replace("+", "%20")
+                        val encodedName = URLEncoder.encode(leagueName, StandardCharsets.UTF_8.toString()).replace("+", "%20")
+                        val encodedTeam = URLEncoder.encode(teamName, StandardCharsets.UTF_8.toString()).replace("+", "%20")
+                        navController.navigate("teams/$encodedId/$encodedName?highlightTeam=$encodedTeam")
+                    })
                 }
 
-                // Ecran 6: Setări
                 composable(Screen.Settings.route) {
                     SettingsScreen(
                         onNavigateToProfile = { navController.navigate(Screen.Profile.route) },
@@ -189,7 +193,6 @@ fun MainScreen() {
                     )
                 }
 
-                // Ecran 7: Profil Informații
                 composable(Screen.Profile.route) {
                     ProfileInfoScreen(onBackClick = { navController.popBackStack() })
                 }

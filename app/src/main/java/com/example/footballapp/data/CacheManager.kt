@@ -10,9 +10,11 @@ import java.util.*
 class CacheManager(context: Context) {
     private val prefs: SharedPreferences = context.getSharedPreferences("football_cache", Context.MODE_PRIVATE)
     private val gson = Gson()
+    // Bump this version to invalidate ALL cached data (e.g., after changing season year)
+    private val CACHE_VERSION = 2
 
     private fun todayStr(): String {
-        return SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+        return "v${CACHE_VERSION}_" + SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
     }
 
     // ─── Countries Cache ────────────────────────────────────────

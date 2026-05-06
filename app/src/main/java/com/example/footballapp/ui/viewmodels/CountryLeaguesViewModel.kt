@@ -56,7 +56,7 @@ class CountryLeaguesViewModel : ViewModel() {
             Log.d("LeaguesVM", "Loading leagues for country=$countryCode")
 
             try {
-                val response = RetrofitClient.apiService.getLeagues(countryCode)
+                val response = RetrofitClient.apiService.getLeagues(countryCode, season = 2024)
                 Log.d("LeaguesVM", "HTTP ${response.code()}")
 
                 if (response.isSuccessful) {

@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -33,6 +34,7 @@ import com.example.footballapp.ui.viewmodels.StandingsViewModel
 fun StandingsScreen(
     leagueId: String,
     leagueName: String,
+    highlightTeamName: String? = null,
     onBackClick: () -> Unit,
     viewModel: StandingsViewModel = viewModel()
 ) {
@@ -53,6 +55,18 @@ fun StandingsScreen(
     val textColor = if (isDarkMode) Color.White else Color(0xFF1F2937)
     val subTextColor = if (isDarkMode) Color.Gray else Color.DarkGray
     val accent = Color(0xFF3B82F6)
+
+    val listState = rememberLazyListState()
+
+    // Scroll to highlighted team
+    LaunchedEffect(standings, highlightTeamName) {
+        if (highlightTeamName != null && standings.isNotEmpty()) {
+            val index = standings.indexOfFirst { it.teamName == highlightTeamName }
+            if (index != -1) {
+                listState.animateScrollToItem(index)
+            }
+        }
+    }
 
     Surface(modifier = Modifier.fillMaxSize(), color = bgDark) {
         Column(modifier = Modifier.fillMaxSize()) {
@@ -104,6 +118,7 @@ fun StandingsScreen(
                 }
             }
 
+            // Standings Content
             when {
                 isLoading -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -119,15 +134,19 @@ fun StandingsScreen(
 
                 else -> {
                     LazyColumn(
+                        state = listState,
                         modifier = Modifier.fillMaxSize(),
                         contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         itemsIndexed(standings) { index, team ->
-                            val borderColor = when (index) {
-                                0 -> Color(0xFFEAB308) // Gold
-                                1 -> Color(0xFFD1D5DB) // Silver
-                                2 -> Color(0xFFD97706) // Bronze
+                            val isHighlighted = team.teamName == highlightTeamName
+                            
+                            val borderColor = when {
+                                isHighlighted -> accent
+                                index == 0 -> Color(0xFFEAB308) // Gold
+                                index == 1 -> Color(0xFFD1D5DB) // Silver
+                                index == 2 -> Color(0xFFD97706) // Bronze
                                 else -> Color.Gray.copy(alpha = 0.3f)
                             }
                             
@@ -145,7 +164,12 @@ fun StandingsScreen(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .clip(RoundedCornerShape(12.dp))
-                                    .background(bgCard)
+                                    .background(if (isHighlighted) accent.copy(alpha = 0.15f) else bgCard)
+                                    .border(
+                                        width = if (isHighlighted) 2.dp else 0.dp,
+                                        color = if (isHighlighted) accent else Color.Transparent,
+                                        shape = RoundedCornerShape(12.dp)
+                                    )
                                     .padding(horizontal = 12.dp, vertical = 14.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
@@ -157,7 +181,7 @@ fun StandingsScreen(
                                 ) {
                                     Text(
                                         text = "${index + 1}",
-                                        color = if (index < 3) borderColor else textColor,
+                                        color = if (index < 3 || isHighlighted) borderColor else textColor,
                                         fontSize = 13.sp,
                                         fontWeight = FontWeight.Bold
                                     )
@@ -165,7 +189,7 @@ fun StandingsScreen(
                                 
                                 Spacer(Modifier.width(12.dp))
 
-                                // Shield Icon (Lighter Blue)
+                                // Shield Icon
                                 Box(
                                     modifier = Modifier
                                         .size(36.dp)
@@ -176,7 +200,7 @@ fun StandingsScreen(
                                     Icon(
                                         imageVector = Icons.Default.Shield,
                                         contentDescription = null,
-                                        tint = Color(0xFF93C5FD), // Light blue shield
+                                        tint = Color(0xFF93C5FD),
                                         modifier = Modifier.size(20.dp)
                                     )
                                 }

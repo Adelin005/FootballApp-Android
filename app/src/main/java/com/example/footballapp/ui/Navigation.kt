@@ -22,9 +22,13 @@ sealed class Screen(val route: String, val titleResId: Int? = null, val icon: Im
     // Auth
     object Login : Screen("login")
     object SignUp : Screen("signup")
-    
     // Profile
     object Profile : Screen("profile_info")
+    
+    // Standings
+    object Teams : Screen("teams/{leagueId}/{leagueName}") {
+        fun createRoute(id: String, name: String) = "teams/$id/$name"
+    }
 }
 
 val bottomNavItems = listOf(Screen.Home, Screen.Leagues, Screen.Favorites, Screen.Settings)

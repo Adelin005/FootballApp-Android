@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 data class FavoriteTeam(
     val teamId: String,
     val teamName: String,
+    val leagueId: String,
     val leagueName: String,
     val teamStanding: TeamStanding
 )
@@ -43,6 +44,7 @@ class FavoritesManager(context: Context) {
                 FavoriteTeam(
                     teamId = teamStanding.teamName, // Se folosește numele ca id
                     teamName = teamStanding.teamName,
+                    leagueId = leagueId,
                     leagueName = leagueName,
                     teamStanding = teamStanding
                 )

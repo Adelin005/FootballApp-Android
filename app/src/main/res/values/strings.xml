@@ -72,6 +72,9 @@
     <string name="auth_err_empty">Completează toate câmpurile</string>
     <string name="auth_err_pass_mismatch">Parolele nu se potrivesc</string>
     <string name="auth_err_general">Eroare: %1$s</string>
+    <string name="auth_forgot_pass_empty">Te rog introdu emailul pentru a reseta parola</string>
+    <string name="auth_forgot_pass_success">Link de resetare trimis! Verifică-ți emailul.</string>
+    <string name="auth_login_success">Te-ai conectat cu succes!</string>
 
     <!-- Profile & Settings -->
     <string name="settings_title">Setări</string>

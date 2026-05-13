@@ -82,7 +82,7 @@ fun HomeScreen(
             // Profile Icon (Dreapta Sus)
             Box(
                 modifier = Modifier
-                    .size(32.dp)
+                    .size(26.dp)
                     .border(1.5.dp, Color.White, CircleShape)
                     .clip(CircleShape)
                     .clickable { onProfileClick() },
@@ -108,7 +108,7 @@ fun HomeScreen(
             Text(
                 text = stringResource(R.string.home_main_title),
                 color = textColor,
-                fontSize = 40.sp,
+                fontSize = 34.sp,
                 fontWeight = FontWeight.ExtraBold,
                 textAlign = TextAlign.Center,
                 lineHeight = 44.sp

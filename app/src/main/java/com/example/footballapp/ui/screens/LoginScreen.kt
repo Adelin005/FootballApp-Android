@@ -132,7 +132,28 @@ fun LoginScreen(
 
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                     Text(stringResource(R.string.auth_password_label), color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                    Text(stringResource(R.string.auth_forgot_pass), color = accentBlue, fontSize = 13.sp, fontWeight = FontWeight.Medium, modifier = Modifier.clickable { })
+                    Text(
+                        text = stringResource(R.string.auth_forgot_pass), 
+                        color = accentBlue, 
+                        fontSize = 13.sp, 
+                        fontWeight = FontWeight.Medium, 
+                        modifier = Modifier.clickable { 
+                            if (email.isBlank()) {
+                                Toast.makeText(context, context.getString(R.string.auth_forgot_pass_empty), Toast.LENGTH_SHORT).show()
+                            } else {
+                                isLoading = true
+                                auth.sendPasswordResetEmail(email.trim())
+                                    .addOnCompleteListener { task ->
+                                        isLoading = false
+                                        if (task.isSuccessful) {
+                                            Toast.makeText(context, context.getString(R.string.auth_forgot_pass_success), Toast.LENGTH_LONG).show()
+                                        } else {
+                                            Toast.makeText(context, context.getString(R.string.auth_err_general, task.exception?.message ?: ""), Toast.LENGTH_LONG).show()
+                                        }
+                                    }
+                            }
+                        }
+                    )
                 }
                 Spacer(modifier = Modifier.height(10.dp))
                 TextField(
@@ -172,6 +193,7 @@ fun LoginScreen(
                             .addOnCompleteListener { task ->
                                 isLoading = false
                                 if (task.isSuccessful) {
+                                    Toast.makeText(context, context.getString(R.string.auth_login_success), Toast.LENGTH_SHORT).show()
                                     onLoginSuccess()
                                 } else {
                                     Toast.makeText(context, context.getString(R.string.auth_err_general, task.exception?.message ?: ""), Toast.LENGTH_SHORT).show()
